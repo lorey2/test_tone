@@ -1,68 +1,71 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --border: #334155;
+  --accent: #38bdf8; /* Blue for Melody */
+  --accent-alt: #f43f5e; /* Red for Rhythm */
+  --master-accent: #10b981; /* Green for Master Bus */
+  --text: #f8fafc;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.rack {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.rack-title {
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 15px;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background: #334155;
+  color: white;
+  border: 1px solid #475569;
+  padding: 10px 14px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-family: inherit;
+  font-weight: bold;
+  transition: all 0.1s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:hover { background: #475569; border-color: var(--accent); }
+button:active { transform: translateY(2px); background: var(--accent); color: var(--bg); }
+
+/* Special styling for the Wired Button */
+.wired-btn {
+  border: 2px solid var(--master-accent);
+  background: #064e3b;
+}
+.wired-btn:active { background: var(--master-accent); }
+
+@keyframes flow {
+  0% { opacity: 0.3; transform: translateX(-2px); }
+  50% { opacity: 1; transform: translateX(2px); }
+  100% { opacity: 0.3; transform: translateX(-2px); }
+}
+
+.signal-arrow {
+  display: inline-block;
+  animation: flow 2s infinite ease-in-out;
+  font-weight: bold;
 }
